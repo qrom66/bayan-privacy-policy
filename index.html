@@ -21,7 +21,7 @@
 <p>تطبيق «بيان» (BAYAN) يحوّل الملفات الصوتية إلى فيديو مع نص مُستخرَج تلقائيًا. نحن نحترم خصوصيتك، وهذه السياسة توضّح البيانات التي يعالجها التطبيق وكيف.</p>
 
 <h2>1. لا يوجد لدينا خادم ولا حساب</h2>
-<p>لا يتطلب التطبيق إنشاء حساب أو تسجيل دخول، ولا نملك نحن (المطوّر) أي خادم يجمع بياناتك أو يخزّنها. تبقى ملفاتك (الصوت، النص، الفيديو، الصور) <strong>على جهازك فقط</strong>.</p>
+<p>لا يتطلب التطبيق إنشاء حساب أو تسجيل دخول، ولا نملك نحن (المطوّر) أي خادم يجمع بياناتك أو يخزّنها. ملفاتك (التسجيلات والنصوص والفيديوهات والصور) تُخزَّن على جهازك، ولا نملك نحن أي خادم يستقبلها. الاستثناءان الوحيدان موضّحان في البندين 3 و5 أدناه.</p>
 
 <h2>2. البيانات التي يعالجها التطبيق</h2>
 <ul>
@@ -37,18 +37,48 @@
 <p>لا نشارك بياناتك مع أي طرف آخر، ولا نبيعها، ولا نستخدمها في الإعلانات.</p>
 
 <h2>4. ما لا نجمعه</h2>
-<p>لا يجمع التطبيق: الاسم، أو البريد، أو الموقع الجغرافي، أو جهات الاتصال، أو المعلومات المالية أو الصحية، ولا يستخدم المعرِّف الإعلاني، ولا يحتوي على أي أدوات تتبّع أو تحليلات أو إعلانات.</p>
+<p>لا يجمع التطبيق: الاسم، أو البريد الإلكتروني، أو رقم الهاتف، أو الموقع الجغرافي الدقيق، أو جهات الاتصال، أو المعلومات المالية أو الصحية. ولا يستخدم المعرِّف الإعلاني، ولا يحتوي على أي إعلانات، ولا يربط بياناتك بحسابك على Google.</p>
 
-<h2>5. الاحتفاظ بالبيانات وحذفها</h2>
-<p>جميع بياناتك على جهازك، ويمكنك حذفها في أي وقت بحذف الملفات من داخل التطبيق أو بإلغاء تثبيت التطبيق. الملفات المؤقتة تُنظَّف تلقائيًا. أمّا البيانات التي أُرسِلت إلى OpenAI فيحكم الاحتفاظ بها سياسةُ OpenAI، ولا نملك نحن وسيلة لحذفها نيابةً عنك.</p>
+<h2>5. قياس الاستخدام</h2>
+<p>يستخدم التطبيق خدمة <strong>Google Analytics for Firebase</strong> لمعرفة أي خطوات التطبيق تُستخدم وأيها يفشل، بهدف تحسينه. والمشروع المستخدَم مخصّص لهذا التطبيق وحده.</p>
 
-<h2>6. الأطفال</h2>
+<p><strong>ما نرسله:</strong> إشارة إلى الخطوة التي وصل إليها الاستخدام ونتيجتها — مثل فتح التطبيق، أو اختيار ملف صوتي، أو بدء التفريغ ونجاحه أو فشله، أو تجهيز الفيديو وتصديره ومشاركته، أو فتح الإعدادات أو المسجّل. ويُرفَق مع الإشارة قيم محدودة فقط: <strong>مدة الصوت بالثواني</strong>، و<strong>امتداد الملف</strong> (mp3 أو m4a مثلًا)، و<strong>نوع الخطأ العام</strong> عند الفشل، و<strong>فئة الخلفية</strong> المختارة (اسم نمط بصري)، و<strong>موضع بدء الإجراء في الواجهة</strong>. وجميعها قيم مختارة من قوائم ثابتة.</p>
+
+<p><strong>ما لا يُرسَل إلى خدمة القياس إطلاقًا:</strong></p>
+<ul>
+  <li>نص التفريغ أو أي جزء منه</li>
+  <li>الصوت أو أي مقطع منه</li>
+  <li>الصور، سواء الخلفيات أو صورة المتحدث</li>
+  <li>أسماء الملفات أو مسارها على جهازك</li>
+  <li>عنوان الفيديو أو اسم المتحدث أو أي نص تكتبه بنفسك</li>
+  <li>بريدك أو رقمك أو اسمك أو أي بيانات اعتماد</li>
+</ul>
+<p>وهذا مبنيّ في التطبيق كقائمة سماح مغلقة: أي قيمة خارج ما ذُكر أعلاه تُحذف قبل الإرسال.</p>
+
+<p><strong>ما تجمعه الخدمة تلقائيًا:</strong></p>
+<ul>
+  <li><strong>معرّف تقني لتثبيت التطبيق</strong> على جهازك، تستخدمه الخدمة لتمييز عمليات التثبيت عن بعضها.</li>
+  <li><strong>موقع تقريبي على مستوى الدولة أو المنطقة</strong>، تشتقّه Google من عنوان IP المُقنَّع. لا يُجمع موقع دقيق، ولا يطلب التطبيق إذن الموقع.</li>
+  <li><strong>نوع الجهاز ونظام تشغيله ونسخة التطبيق ولغته.</strong></li>
+  <li>إشارات دورة حياة تلقائية، مثل أول تشغيل وبدء الجلسة ومدة التفاعل.</li>
+</ul>
+
+<p><strong>ما عطّلناه عمدًا:</strong> المعرِّف الإعلاني، وتخصيص الإعلانات، وميزة Google Signals التي تربط النشاط بحسابات المستخدمين، وتتبّع مصدر تثبيت التطبيق، وتسجيل الشاشات التلقائي.</p>
+
+<p><strong>ولا تُستخدم هذه البيانات لأغراض Google الخاصة:</strong> أطفأنا جميع خيارات مشاركة بيانات القياس مع Google لأغراض إضافية، فهي تُعالَج نيابةً عنّا فقط.</p>
+
+<p>تخضع هذه المعالجة لسياسة خصوصية Google: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+
+<h2>6. الاحتفاظ بالبيانات وحذفها</h2>
+<p>جميع بياناتك على جهازك، ويمكنك حذفها في أي وقت بحذف الملفات من داخل التطبيق أو بإلغاء تثبيت التطبيق. الملفات المؤقتة تُنظَّف تلقائيًا. أمّا البيانات التي أُرسِلت إلى OpenAI فيحكم الاحتفاظ بها سياسةُ OpenAI، ولا نملك نحن وسيلة لحذفها نيابةً عنك. أمّا بيانات قياس الاستخدام فتحتفظ بها Google وفق مدد الاحتفاظ المعمول بها في الخدمة. ولا يوفّر التطبيق حاليًا وسيلة داخلية لطلب حذفها.</p>
+
+<h2>7. الأطفال</h2>
 <p>التطبيق غير موجَّه للأطفال دون سن 13 عامًا.</p>
 
-<h2>7. الأمان</h2>
-<p>تتم كل الاتصالات الشبكية عبر HTTPS. ولا يطلب التطبيق منك إدخال أي مفاتيح أو بيانات اعتماد.</p>
+<h2>8. الأمان</h2>
+<p>تتم كل الاتصالات الشبكية عبر اتصال مُشفَّر (HTTPS/TLS)، سواء عند إرسال الصوت للتفريغ أو عند إرسال إشارات قياس الاستخدام. ولا يطلب التطبيق منك إدخال أي مفاتيح أو بيانات اعتماد.</p>
 
-<h2>8. التغييرات والتواصل</h2>
+<h2>9. التغييرات والتواصل</h2>
 <p>قد نُحدّث هذه السياسة، وسيظهر تاريخ التحديث أعلى الصفحة. لأي استفسار: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a>.</p>
 
 <!-- ===================== ENGLISH ===================== -->
@@ -59,7 +89,7 @@
 <p>BAYAN converts audio files into videos with automatically generated subtitles. This policy explains what data the app processes and how.</p>
 
 <h2>1. No server, no account</h2>
-<p>The app requires no account or sign-in, and we (the developer) operate no server that collects or stores your data. Your files (audio, text, video, images) stay <strong>on your device only</strong>.</p>
+<p>The app requires no account or sign-in, and we (the developer) operate no server that collects or stores your data. Your files (recordings, text, videos, images) are stored on your device, and we operate no server that receives them. The only two exceptions are described in sections 3 and 5 below.</p>
 
 <h2>2. Data the app processes</h2>
 <ul>
@@ -75,18 +105,48 @@
 <p>We do not share your data with anyone else, do not sell it, and do not use it for advertising.</p>
 
 <h2>4. What we do not collect</h2>
-<p>The app does not collect your name, email, location, contacts, financial or health data, does not use the advertising ID, and contains no tracking, analytics, or ads.</p>
+<p>The app does not collect your name, email address, phone number, precise location, contacts, financial or health data. It does not use the advertising ID, contains no ads, and does not link your data to your Google account.</p>
 
-<h2>5. Retention &amp; deletion</h2>
-<p>All your data is on your device and can be deleted anytime from within the app or by uninstalling it. Temporary files are cleaned automatically. Data sent to OpenAI is retained per OpenAI's policy, and we have no means to delete it on your behalf.</p>
+<h2>5. Usage measurement</h2>
+<p>The app uses <strong>Google Analytics for Firebase</strong> to learn which steps of the app are used and which ones fail, in order to improve it. The project used is dedicated to this app alone.</p>
 
-<h2>6. Children</h2>
+<p><strong>What we send:</strong> a signal indicating which step was reached and its outcome — for example opening the app, selecting an audio file, starting a transcription and whether it succeeded or failed, preparing, exporting and sharing a video, or opening the settings or the recorder. Only a limited set of values accompanies each signal: the <strong>audio duration in seconds</strong>, the <strong>file extension</strong> (such as mp3 or m4a), the <strong>general error type</strong> on failure, the <strong>background category</strong> chosen (a visual style name), and <strong>where in the interface the action started</strong>. All of these are values drawn from fixed lists.</p>
+
+<p><strong>What is never sent to the measurement service:</strong></p>
+<ul>
+  <li>The transcript, or any part of it</li>
+  <li>The audio, or any segment of it</li>
+  <li>Images, whether backgrounds or the speaker photo</li>
+  <li>File names, or their paths on your device</li>
+  <li>The video title, the speaker name, or any text you type yourself</li>
+  <li>Your email, phone number, name, or any credentials</li>
+</ul>
+<p>This is built into the app as a closed allow-list: any value outside the list above is dropped before sending.</p>
+
+<p><strong>What the service collects automatically:</strong></p>
+<ul>
+  <li>A <strong>technical identifier for the app installation</strong> on your device, used by the service to distinguish installations from one another.</li>
+  <li>An <strong>approximate location at country or region level</strong>, derived by Google from the device's masked IP address. No precise location is collected, and the app does not request the location permission.</li>
+  <li><strong>Device model, operating system, app version and language.</strong></li>
+  <li>Automatic lifecycle signals, such as first open, session start and engagement time.</li>
+</ul>
+
+<p><strong>What we deliberately disabled:</strong> the advertising ID, ad personalization, the Google Signals feature that links activity to signed-in accounts, install-source tracking, and automatic screen logging.</p>
+
+<p><strong>And this data is not used for Google's own purposes:</strong> we have turned off every option that shares measurement data with Google for additional purposes, so it is processed on our behalf only.</p>
+
+<p>This processing is governed by Google's privacy policy: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+
+<h2>6. Retention &amp; deletion</h2>
+<p>All your data is on your device and can be deleted anytime from within the app or by uninstalling it. Temporary files are cleaned automatically. Data sent to OpenAI is retained per OpenAI's policy, and we have no means to delete it on your behalf. Usage-measurement data is retained by Google according to the retention periods applicable to the service. The app currently provides no in-app means to request its deletion.</p>
+
+<h2>7. Children</h2>
 <p>The app is not directed to children under 13.</p>
 
-<h2>7. Security</h2>
-<p>All network traffic uses HTTPS. The app does not ask you to enter any keys or credentials.</p>
+<h2>8. Security</h2>
+<p>All network traffic uses an encrypted connection (HTTPS/TLS), both when sending audio for transcription and when sending usage-measurement signals. The app does not ask you to enter any keys or credentials.</p>
 
-<h2>8. Changes &amp; contact</h2>
+<h2>9. Changes &amp; contact</h2>
 <p>We may update this policy; the date at the top will reflect changes. Questions: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a>.</p>
 </div>
 
