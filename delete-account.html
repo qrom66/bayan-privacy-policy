@@ -1,0 +1,122 @@
+<!doctype html>
+<!--
+  BAYAN — delete your account without the app (Orivex Solutions).
+
+  The key below is the project's PUBLISHABLE key: public by design, the same
+  one shipped inside the app, and useless without a user's own credentials.
+  Never put the service-role key here.
+
+  The page signs the person in with their own email and password and calls the
+  `delete-account` function, which deletes only the caller's own account.
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حذف حساب بيان قو | BAYAN GO account deletion</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, "Segoe UI", Tahoma, sans-serif; max-width: 34rem;
+           margin: 2rem auto; padding: 0 1rem; line-height: 1.7; }
+    h1 { font-size: 1.4rem; }
+    .warn { border: 1px solid #e0645a; background: rgba(224,100,90,.1);
+            padding: .8rem 1rem; border-radius: .6rem; }
+    label { display: block; margin-top: .8rem; }
+    input[type=email], input[type=password] { width: 100%; padding: .6rem; font-size: 1rem;
+            box-sizing: border-box; }
+    button { margin-top: 1rem; padding: .7rem 1.2rem; font-size: 1rem; background: #e0645a;
+             color: #fff; border: 0; border-radius: .5rem; cursor: pointer; }
+    button:disabled { opacity: .5; cursor: default; }
+    .muted { color:#666; font-size:.92rem }
+    #status { margin-top: 1rem; white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <h1>حذف حساب بيان قو</h1>
+  <p class="muted">تطبيق «بيان قو» (BAYAN GO) — المطوِّر: Orivex Solutions — للتواصل:
+    <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a> —
+    <a href="./">سياسة الخصوصية</a></p>
+  <p>أسهل طريقة: من داخل التطبيق <strong>الإعدادات ← حسابي ← حذف الحساب</strong>.
+     وإن لم يكن التطبيق مثبّتًا، أكمل من هنا بنفس بريدك وكلمة مرورك.</p>
+  <p class="warn">حذف الحساب نهائي ولا يمكن التراجع عنه. لا يمكن استعادة الحساب أو رصيده بعد الحذف.</p>
+
+  <h2>ما الذي سيُحذف</h2>
+  <ul>
+    <li>حسابك وبيانات تسجيل الدخول وجميع الجلسات.</li>
+    <li>رصيد الدقائق والباقات والمنتجات المفعّلة في الحساب، ولا تُسترد.</li>
+    <li>سجل استخدامك وإعدادات حسابك على خوادمنا.</li>
+    <li>أي ملفات صوتية مؤقتة رُفعت للتفريغ ولم تُحذف بعد.</li>
+  </ul>
+  <h2>ما الذي نحتفظ به</h2>
+  <p>سجلٌّ إداري بحذف الحساب يتضمن بريدك الإلكتروني وتاريخ الحذف، وسجلات عمليات الشراء
+     السابقة دون ربطها بأي حساب — لأغراض أمنية ومحاسبية.</p>
+  <p>مشاريعك وتسجيلاتك المحفوظة على هاتفك لا تُحذف من هنا؛ احذفها من التطبيق أو أزِل التطبيق.</p>
+
+  <form id="form">
+    <label>البريد الإلكتروني
+      <input id="email" type="email" autocomplete="email" required>
+    </label>
+    <label>كلمة المرور
+      <input id="password" type="password" autocomplete="current-password" required>
+    </label>
+    <label><input id="understood" type="checkbox"> أفهم أن حذف الحساب نهائي ولا يمكن التراجع عنه.</label>
+    <button id="submit" type="submit" disabled>حذف حسابي نهائيًا</button>
+  </form>
+  <p id="status" role="status"></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    const SUPABASE_URL = 'https://bpmkxeghbsjryyrqkbjl.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_KLIe4XducFh40-K7uAaABA_1X00nqF7';
+
+    const $ = (id) => document.getElementById(id);
+    const client = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      auth: { persistSession: false },
+    });
+
+    const ready = () => {
+      $('submit').disabled = !($('understood').checked && $('email').value && $('password').value);
+    };
+    ['email', 'password', 'understood'].forEach((id) => $(id).addEventListener('input', ready));
+    $('understood').addEventListener('change', ready);
+
+    const messages = {
+      admin_account: 'حساب المدير لا يُحذف من هنا.',
+      reauth_required: 'انتهت صلاحية التحقق. أعد المحاولة.',
+      not_authenticated: 'تعذّر التحقق من الحساب. أعد المحاولة.',
+    };
+
+    $('form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!confirm('سيُحذف حسابك الآن نهائيًا مع رصيده. هل تريد المتابعة؟')) return;
+      $('submit').disabled = true;
+      $('status').textContent = 'جارٍ الحذف…';
+
+      const { error: signInError } = await client.auth.signInWithPassword({
+        email: $('email').value.trim(),
+        password: $('password').value,
+      });
+      if (signInError) {
+        $('status').textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة. لم يُحذف شيء.';
+        ready();
+        return;
+      }
+
+      const { error } = await client.functions.invoke('delete-account', {
+        body: { confirm: 'DELETE_MY_ACCOUNT' },
+      });
+      await client.auth.signOut({ scope: 'local' }).catch(() => {});
+      if (error) {
+        let code = null;
+        try { code = (await error.context.json()).error; } catch (_) {}
+        $('status').textContent =
+          (messages[code] ?? 'تعذّر حذف الحساب الآن.') + ' لم يُحذف شيء.';
+        ready();
+        return;
+      }
+      $('form').remove();
+      $('status').textContent = 'تم حذف حسابك نهائيًا.';
+    });
+  </script>
+</body>
+</html>
