@@ -6,14 +6,21 @@
   one shipped inside the app, and useless without a user's own credentials.
   Never put the service-role key here.
 
-  The page signs the person in with their own email and password and calls the
-  `delete-account` function, which deletes only the caller's own account.
+  The page signs the person in with their own email address or phone number
+  and password, exactly as the app does, and calls the `delete-account`
+  function, which deletes only the caller's own account.
+
+  Accounts opened in the directly-distributed apps sign in with an internal
+  handle derived from what the person registered with:
+    <first 40 hex of SHA-256("bayan-login-v1:<email|phone>:<value>")>@login.bayan.invalid
+  (the same derivation as the app and the `direct-register` function). An
+  account from before that signs in with its address, which is tried next.
 -->
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>حذف حساب بيان قو | BAYAN GO account deletion</title>
+  <title>حذف حساب بيان | BAYAN account deletion</title>
   <style>
     :root { color-scheme: light dark; }
     body { font-family: system-ui, "Segoe UI", Tahoma, sans-serif; max-width: 34rem;
@@ -22,22 +29,27 @@
     .warn { border: 1px solid #e0645a; background: rgba(224,100,90,.1);
             padding: .8rem 1rem; border-radius: .6rem; }
     label { display: block; margin-top: .8rem; }
-    input[type=email], input[type=password] { width: 100%; padding: .6rem; font-size: 1rem;
-            box-sizing: border-box; }
+    fieldset { border: 0; padding: 0; margin: .8rem 0 0; }
+    fieldset label { display: inline-block; margin: 0 0 0 1.2rem; }
+    input[type=email], input[type=tel], input[type=password] { width: 100%; padding: .6rem;
+            font-size: 1rem; box-sizing: border-box; }
+    input[type=tel] { direction: ltr; text-align: right; }
     button { margin-top: 1rem; padding: .7rem 1.2rem; font-size: 1rem; background: #e0645a;
              color: #fff; border: 0; border-radius: .5rem; cursor: pointer; }
     button:disabled { opacity: .5; cursor: default; }
     .muted { color:#666; font-size:.92rem }
+    [hidden] { display: none !important; }
     #status { margin-top: 1rem; white-space: pre-line; }
   </style>
 </head>
 <body>
-  <h1>حذف حساب بيان قو</h1>
-  <p class="muted">تطبيق «بيان قو» (BAYAN GO) — المطوِّر: Orivex Solutions — للتواصل:
+  <h1>حذف حساب بيان قو أو بيان برو</h1>
+  <p class="muted">تطبيقا «بيان قو» (BAYAN GO) و«بيان برو» (BAYAN PRO) — المطوِّر: Orivex Solutions — للتواصل:
     <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a> —
     <a href="./">سياسة الخصوصية</a></p>
   <p>أسهل طريقة: من داخل التطبيق <strong>الإعدادات ← حسابي ← حذف الحساب</strong>.
-     وإن لم يكن التطبيق مثبّتًا، أكمل من هنا بنفس بريدك وكلمة مرورك.</p>
+     وإن لم يكن التطبيق مثبّتًا، أكمل من هنا بالبريد الإلكتروني أو رقم الجوال الذي سجّلت به،
+     وكلمة مرورك.</p>
   <p class="warn">حذف الحساب نهائي ولا يمكن التراجع عنه. لا يمكن استعادة الحساب أو رصيده بعد الحذف.</p>
 
   <h2>ما الذي سيُحذف</h2>
@@ -48,15 +60,22 @@
     <li>أي ملفات صوتية مؤقتة رُفعت للتفريغ ولم تُحذف بعد.</li>
   </ul>
   <h2>ما الذي نحتفظ به</h2>
-  <p>سجلٌّ إداري بحذف الحساب يتضمن بريدك الإلكتروني وتاريخ الحذف، وسجلات عمليات الشراء
-     السابقة دون ربطها بأي حساب، وبصمة مشفّرة أحادية الاتجاه لعنوان بريدك مع تاريخها — لا
-     العنوان نفسه — لأغراض أمنية ومحاسبية، ولأن التجربة المجانية تُمنح مرة واحدة لكل عنوان
-     بريد فلا يعيدها حذف الحساب ثم التسجيل بالعنوان نفسه.</p>
+  <p>سجلٌّ إداري بحذف الحساب يتضمن البريد الإلكتروني أو رقم الجوال الذي سجّلت به وتاريخ
+     الحذف، وسجلات عمليات الشراء السابقة دون ربطها بأي حساب، وبصمة مملَّحة أحادية الاتجاه لهذا
+     البريد أو الرقم مع تاريخها — لا البريد أو الرقم نفسه — لأغراض أمنية ومحاسبية، ولأن التجربة
+     المجانية تُمنح مرة واحدة لكل بريد أو رقم جوال فلا يعيدها حذف الحساب ثم التسجيل من جديد.</p>
   <p>مشاريعك وتسجيلاتك المحفوظة على هاتفك لا تُحذف من هنا؛ احذفها من التطبيق أو أزِل التطبيق.</p>
 
   <form id="form">
-    <label>البريد الإلكتروني
-      <input id="email" type="email" autocomplete="email" required>
+    <fieldset>
+      <label><input type="radio" name="method" value="email" checked> البريد الإلكتروني</label>
+      <label><input type="radio" name="method" value="phone"> رقم الجوال</label>
+    </fieldset>
+    <label id="email-row">البريد الإلكتروني
+      <input id="email" type="email" autocomplete="email">
+    </label>
+    <label id="phone-row" hidden>رقم الجوال مع رمز الدولة
+      <input id="phone" type="tel" autocomplete="tel" placeholder="+974 5555 1234">
     </label>
     <label>كلمة المرور
       <input id="password" type="password" autocomplete="current-password" required>
@@ -67,6 +86,7 @@
   <p id="status" role="status"></p>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.13.13/bundle/libphonenumber-max.js"></script>
   <script>
     const SUPABASE_URL = 'https://bpmkxeghbsjryyrqkbjl.supabase.co';
     const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_KLIe4XducFh40-K7uAaABA_1X00nqF7';
@@ -76,10 +96,47 @@
       auth: { persistSession: false },
     });
 
+    const method = () => document.querySelector('input[name=method]:checked').value;
+
+    /// The number in E.164, as the app stores it — or null. Arabic-Indic
+    /// digits and a leading 00 are accepted.
+    function e164(raw) {
+      const western = raw
+        .replace(/[٠-٩]/g, (d) => String(d.charCodeAt(0) - 0x0660))
+        .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 0x06F0))
+        .trim()
+        .replace(/^00/, '+');
+      const parsed = libphonenumber.parsePhoneNumberFromString(western);
+      return parsed && parsed.isValid() ? parsed.number : null;
+    }
+
+    async function loginHandle(kind, value) {
+      const bytes = new TextEncoder().encode(`bayan-login-v1:${kind}:${value}`);
+      const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+      const hex = Array.from(digest, (b) => b.toString(16).padStart(2, '0')).join('');
+      return `${hex.slice(0, 40)}@login.bayan.invalid`;
+    }
+
+    /// The names this account may sign in under, in the app's order.
+    async function signInNames() {
+      if (method() === 'phone') {
+        const number = e164($('phone').value);
+        return number ? [await loginHandle('phone', number)] : [];
+      }
+      const email = $('email').value.trim().toLowerCase();
+      return email ? [await loginHandle('email', email), email] : [];
+    }
+
     const ready = () => {
-      $('submit').disabled = !($('understood').checked && $('email').value && $('password').value);
+      const id = method() === 'phone' ? $('phone').value : $('email').value;
+      $('submit').disabled = !($('understood').checked && id && $('password').value);
     };
-    ['email', 'password', 'understood'].forEach((id) => $(id).addEventListener('input', ready));
+    document.querySelectorAll('input[name=method]').forEach((r) => r.addEventListener('change', () => {
+      $('email-row').hidden = method() !== 'email';
+      $('phone-row').hidden = method() !== 'phone';
+      ready();
+    }));
+    ['email', 'phone', 'password', 'understood'].forEach((id) => $(id).addEventListener('input', ready));
     $('understood').addEventListener('change', ready);
 
     const messages = {
@@ -90,16 +147,29 @@
 
     $('form').addEventListener('submit', async (event) => {
       event.preventDefault();
+      const names = await signInNames();
+      if (!names.length) {
+        $('status').textContent = method() === 'phone'
+          ? 'رقم الجوال غير صحيح. اكتبه مع رمز الدولة، مثل ‎+974 5555 1234. لم يُحذف شيء.'
+          : 'أدخل البريد الإلكتروني. لم يُحذف شيء.';
+        return;
+      }
       if (!confirm('سيُحذف حسابك الآن نهائيًا مع رصيده. هل تريد المتابعة؟')) return;
       $('submit').disabled = true;
       $('status').textContent = 'جارٍ الحذف…';
 
-      const { error: signInError } = await client.auth.signInWithPassword({
-        email: $('email').value.trim(),
-        password: $('password').value,
-      });
-      if (signInError) {
-        $('status').textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة. لم يُحذف شيء.';
+      let signedIn = false;
+      for (const name of names) {
+        const { error } = await client.auth.signInWithPassword({
+          email: name,
+          password: $('password').value,
+        });
+        if (!error) { signedIn = true; break; }
+      }
+      if (!signedIn) {
+        $('status').textContent = (method() === 'phone'
+          ? 'رقم الجوال أو كلمة المرور غير صحيحة.'
+          : 'البريد الإلكتروني أو كلمة المرور غير صحيحة.') + ' لم يُحذف شيء.';
         ready();
         return;
       }

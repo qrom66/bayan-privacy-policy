@@ -19,13 +19,16 @@
 <body>
 
 <h1>سياسة الخصوصية — بيان قو (BAYAN GO)</h1>
-<p class="muted">آخر تحديث: سبتمبر 2026 · المطوِّر: Orivex Solutions · للتواصل: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a></p>
+<p class="muted">آخر تحديث: 24 سبتمبر 2026 · المطوِّر: Orivex Solutions · للتواصل: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a></p>
+<p class="muted">تنطبق هذه السياسة أيضًا على «بيان برو» (BAYAN PRO) وعلى نسخ التطبيقين التي نوزّعها مباشرة خارج Google Play، مع الفروق المذكورة في مواضعها.</p>
 
 <p>«بيان قو» تطبيق يحوّل التسجيلات الصوتية إلى فيديوهات مترجمة بنص مُستخرَج تلقائيًا. توضّح هذه الصفحة ما الذي يجمعه التطبيق فعلًا، وأين يُعالَج، وكم يبقى، وكيف تحذف حسابك وبياناتك.</p>
 
 <h2>1. الحساب</h2>
 <p>يتطلّب التطبيق إنشاء حساب وتسجيل الدخول. نجمع <strong>البريد الإلكتروني</strong> الذي تسجّل به، ويُنشأ لحسابك <strong>معرّف داخلي</strong> لدينا. تُدار كلمة المرور بواسطة خدمة المصادقة ولا نطّلع عليها.</p>
+<p><strong>النسخ الموزّعة مباشرة (خارج Google Play):</strong> يمكنك التسجيل بالبريد الإلكتروني <strong>أو برقم الجوال</strong> مع رمز الدولة. لا نرسل إلى البريد أو الرقم أي رسالة أو رمز تحقق، ولذلك لا نعدّه موثّقًا؛ نحفظه كما أدخلته لتسجيل دخولك ولنتعرّف على حسابك حين تتواصل معنا. نسخة Google Play تسجّل بالبريد الإلكتروني فقط.</p>
 <p>الحسابات الجديدة تبدأ «قيد المراجعة» ولا تُستخدم خدمات التفريغ قبل أن نفعّلها.</p>
+<p>للحدّ من محاولات التسجيل المتكررة في النسخ الموزّعة مباشرة نحفظ <strong>بصمة مملَّحة من عنوان IP</strong> مع عدد المحاولات في الساعة — لا العنوان نفسه — وتُحذف تلقائيًا بعد يوم واحد.</p>
 
 <h2>2. الصوت الذي تفرّغه</h2>
 <p>عند طلب تحويل تسجيل إلى نص، يُرفع الصوت إلى خوادمنا ثم يُرسَل إلى مزوّد الذكاء الاصطناعي (OpenAI) لاستخراج النص. <strong>يُحذف الملف المرفوع من خوادمنا فور انتهاء التفريغ</strong>، ولا نحتفظ بنسخة منه. كما يُرسَل <strong>النص المستخرَج</strong> إلى المزوّد نفسه لضبط علامات الترقيم، ولا نخزّن هذا النص على خوادمنا — يبقى على جهازك.</p>
@@ -51,7 +54,7 @@
 <h2>7. مَن يعالج بياناتك نيابةً عنا</h2>
 <table>
   <tr><th>الجهة</th><th>الغرض</th><th>ما تصله</th></tr>
-  <tr><td>Supabase</td><td>استضافة الحسابات وقاعدة البيانات والتخزين</td><td>البريد الإلكتروني، معرّف الحساب، سجل الاستخدام، والصوت مؤقتًا أثناء التفريغ</td></tr>
+  <tr><td>Supabase</td><td>استضافة الحسابات وقاعدة البيانات والتخزين</td><td>البريد الإلكتروني أو رقم الجوال، معرّف الحساب، سجل الاستخدام، والصوت مؤقتًا أثناء التفريغ</td></tr>
   <tr><td>OpenAI</td><td>استخراج النص وضبط الترقيم</td><td>الصوت المرسَل للتفريغ والنص المستخرَج</td></tr>
 </table>
 
@@ -60,13 +63,14 @@
   <li><strong>الصوت المرفوع:</strong> يُحذف فور انتهاء التفريغ.</li>
   <li><strong>النص المستخرَج:</strong> لا يُخزَّن على خوادمنا.</li>
   <li><strong>الحساب وسجل الاستخدام:</strong> يبقى ما دام حسابك قائمًا.</li>
+  <li><strong>بصمة عنوان IP لمحاولات التسجيل:</strong> تُحذف تلقائيًا بعد يوم واحد.</li>
 </ul>
 
 <h2>9. حذف الحساب والبيانات</h2>
 <p>يمكنك حذف حسابك نهائيًا من داخل التطبيق: <strong>الإعدادات ← حسابي ← حذف الحساب</strong>، أو من صفحة الحذف على الويب:
 <a href="delete-account.html">صفحة حذف حساب بيان</a>.</p>
 <p><strong>يُحذف:</strong> حسابك وبيانات تسجيل الدخول وكل الجلسات، والرصيد والباقات والمنتجات المفعّلة، وسجل استخدامك وإعدادات حسابك على خوادمنا، وأي ملفات صوتية مؤقتة لم تُحذف بعد.</p>
-<p><strong>يبقى لدينا لأغراض أمنية ومحاسبية:</strong> سجلّ إداري يتضمّن بريدك الإلكتروني وتاريخ الحذف، وسجلات عمليات الشراء السابقة بعد فصلها عن الحساب، <strong>وبصمة مشفّرة أحادية الاتجاه لعنوان بريدك مع تاريخها</strong> — لا العنوان نفسه. غرض البصمة واحد: أن التجربة المجانية تُمنح مرة واحدة لكل عنوان بريد، فلا يعيدها حذف الحساب ثم التسجيل بالعنوان نفسه. ولا يمكن استرجاع العنوان من البصمة.</p>
+<p><strong>يبقى لدينا لأغراض أمنية ومحاسبية:</strong> سجلّ إداري يتضمّن بريدك الإلكتروني أو رقم جوالك الذي سجّلت به وتاريخ الحذف، وسجلات عمليات الشراء السابقة بعد فصلها عن الحساب، <strong>وبصمة مملَّحة أحادية الاتجاه لهذا البريد أو الرقم مع تاريخها</strong> — لا البريد أو الرقم نفسه. غرض البصمة واحد: أن التجربة المجانية تُمنح مرة واحدة لكل بريد أو رقم جوال، فلا يعيدها حذف الحساب ثم التسجيل من جديد بالبريد أو الرقم نفسه. ولا يمكن استرجاع البريد أو الرقم من البصمة.</p>
 <p>ما هو محفوظ على جهازك لا يُحذف عن بُعد؛ يمكنك حذفه من داخل التطبيق أو بإزالة التطبيق.</p>
 
 <h2>10. الأطفال</h2>
@@ -80,13 +84,16 @@
 
 <div class="en" lang="en">
 <h1>Privacy Policy — BAYAN GO</h1>
-<p class="muted">Last updated: September 2026 · Developer: Orivex Solutions · Contact: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a></p>
+<p class="muted">Last updated: 24 September 2026 · Developer: Orivex Solutions · Contact: <a href="mailto:orivex.team@gmail.com">orivex.team@gmail.com</a></p>
+<p class="muted">This policy also covers BAYAN PRO and the versions of both apps we distribute directly, outside Google Play, with the differences stated where they apply.</p>
 
 <p>BAYAN GO turns audio recordings into videos with automatically generated subtitles. This page states what the app actually collects, where it is processed, how long it is kept, and how to delete your account and data.</p>
 
 <h2>1. Your account</h2>
 <p>The app requires an account and sign-in. We collect the <strong>email address</strong> you register with, and an <strong>internal account identifier</strong> is created for you. Your password is handled by the authentication service and is never visible to us.</p>
+<p><strong>Directly distributed versions (outside Google Play):</strong> you may register with an email address <strong>or a mobile number</strong> with its country code. We send no message or verification code to it, so we do not treat it as verified; we keep it as you entered it, to sign you in and to recognise your account when you contact us. The Google Play version registers with an email address only.</p>
 <p>New accounts start as "under review" and cannot use transcription until we activate them.</p>
+<p>To limit repeated registration attempts in the directly distributed versions we keep a <strong>salted fingerprint of the IP address</strong> with an hourly count of attempts — not the address itself — deleted automatically after one day.</p>
 
 <h2>2. Audio you transcribe</h2>
 <p>When you ask for a recording to be transcribed, the audio is uploaded to our servers and sent to our AI provider (OpenAI) to produce the text. <strong>The uploaded file is deleted from our servers as soon as transcription finishes</strong>; we keep no copy. The <strong>resulting text</strong> is also sent to the same provider to restore punctuation; we do not store that text on our servers — it stays on your device.</p>
@@ -112,7 +119,7 @@
 <h2>7. Who processes data on our behalf</h2>
 <table>
   <tr><th>Provider</th><th>Purpose</th><th>What it receives</th></tr>
-  <tr><td>Supabase</td><td>Account, database and storage hosting</td><td>Email address, account id, usage records, and audio temporarily during transcription</td></tr>
+  <tr><td>Supabase</td><td>Account, database and storage hosting</td><td>Email address or mobile number, account id, usage records, and audio temporarily during transcription</td></tr>
   <tr><td>OpenAI</td><td>Speech-to-text and punctuation</td><td>The audio sent for transcription and the resulting text</td></tr>
 </table>
 
@@ -121,13 +128,14 @@
   <li><strong>Uploaded audio:</strong> deleted as soon as transcription finishes.</li>
   <li><strong>Transcribed text:</strong> not stored on our servers.</li>
   <li><strong>Account and usage records:</strong> kept while your account exists.</li>
+  <li><strong>IP fingerprints of registration attempts:</strong> deleted automatically after one day.</li>
 </ul>
 
 <h2>9. Deleting your account and data</h2>
 <p>You can delete your account permanently inside the app: <strong>Settings → My account → Delete account</strong>, or from the web page:
 <a href="delete-account.html">BAYAN account deletion</a>.</p>
 <p><strong>Deleted:</strong> your account, sign-in details and all sessions; balance, plans and activated products; your usage records and account settings on our servers; and any temporary audio files not yet removed.</p>
-<p><strong>Kept for security and accounting:</strong> an administrative record containing your email address and the deletion date, past purchase records after they are detached from the account, and a <strong>salted one-way fingerprint of your email address with its date</strong> — not the address itself. The fingerprint has one purpose: the free trial is granted once per email address, so deleting the account and signing up again with the same address does not grant it again. The address cannot be recovered from it.</p>
+<p><strong>Kept for security and accounting:</strong> an administrative record containing the email address or mobile number you registered with and the deletion date, past purchase records after they are detached from the account, and a <strong>salted one-way fingerprint of that email address or number with its date</strong> — not the address or number itself. The fingerprint has one purpose: the free trial is granted once per email address or mobile number, so deleting the account and registering again with the same one does not grant it again. It cannot be recovered from the fingerprint.</p>
 <p>Data saved on your device is not deleted remotely; remove it in the app or uninstall the app.</p>
 
 <h2>10. Children</h2>
